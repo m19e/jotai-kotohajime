@@ -6,11 +6,11 @@ export type TodoAtom = {
 };
 
 export const filterAtom = atom("all");
-export const todosAtom = atom<TodoAtom[]>([]);
+export const todosAtom = atom([atom({ title: "test todo 0", done: false })]);
 export const filteredAtom = atom((get) => {
     const filter = get(filterAtom);
     const todos = get(todosAtom);
     if (filter === "all") return todos;
-    else if (filter === "done") return todos.filter((t) => t.done);
-    else return todos.filter((t) => !t.done);
+    else if (filter === "done") return todos.filter((atom) => get(atom).done);
+    else return todos.filter((atom) => !get(atom).done);
 });
