@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-type TodoAtom = {
+export type TodoAtom = {
     title: string;
     done: boolean;
 };
